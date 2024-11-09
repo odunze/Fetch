@@ -114,8 +114,8 @@
 				4C8F1D782CDEBB7B00225B99 /* AppDelegate.swift */,
 				4C2E71182CDEDE07006BB7A8 /* Models.swift */,
 				4C2E71162CDEDDD9006BB7A8 /* API.swift */,
-				4C2E71142CDEDD9A006BB7A8 /* MealViewController.swift */,
 				4C2E71122CDEDD8E006BB7A8 /* MealsListController.swift */,
+				4C2E71142CDEDD9A006BB7A8 /* MealViewController.swift */,
 				4C2E711A2CDEDE43006BB7A8 /* Resources */,
 			);
 			path = Fetch;
