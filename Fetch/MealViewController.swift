@@ -9,6 +9,10 @@ import UIKit
 
 class MealViewController: UIViewController {
     
+    // Meal name
+    // Instructions
+    // Ingredients/measurements
+    
     private var meal: Meal
     
     var nameLabel: UILabel = {

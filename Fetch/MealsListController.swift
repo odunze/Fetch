@@ -9,56 +9,76 @@ import UIKit
 
 class MealsListController: UIViewController {
     
-    // Meal name
-    // Instructions
-    // Ingredients/measurements
-
+    private var vm: MealsViewModel
+    
+    private var mealsTable: UITableView {
+        let table = UITableView(frame: .zero)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        loadMeals()
+    }
+    
+    init(viewModel: MealsViewModel) {
+        self.vm = viewModel
+        super.init(nibName: nil, bundle: nil)
+
         view.backgroundColor = .red
-        
-        getDesserts { result in
-            switch result {
-            case .success(let meals):
-                print("RECEIVED MEALS: \(meals.meals.count)")
-            case .failure(let error):
+
+        mealsTable.register(UITableViewCell.self, forCellReuseIdentifier: "mealCell")
+        mealsTable.dataSource = self
+        mealsTable.delegate = self
+        view.addSubview(mealsTable)
+
+        NSLayoutConstraint.activate([
+            mealsTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mealsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mealsTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mealsTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadMeals() {
+        Task {
+            do {
+                try await vm.loadDesserts()
+                DispatchQueue.main.async {
+                    self.mealsTable.reloadData()
+                }
+            } catch {
                 print("NETWORK CALL FROM VC WITH ERROR: \(error.localizedDescription)")
             }
         }
     }
+}
+
+extension MealsListController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vm.meals.count
+    }
     
-    //  Asynchronous code must be written using Swift Concurrency (async/await).
-    func getDesserts(completion: @escaping(MealsResult) -> Void) {
-
-        let request = API.meal(id: 52792).request()
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let serverError = error {
-                print("SERVER ERROR: \(serverError.localizedDescription)")
-                completion(.failure(serverError))
-            }
-
-            if let httpResponse = response as? HTTPURLResponse {
-                print("HTTP STATUS CODE: \(httpResponse.statusCode)")
-            }
-
-            if let receivedData = data {
-                do {
-//                    let json = try JSONSerialization.jsonObject(with: receivedData, options: [])
-//                    print(json)
-                    let jsonDecoder = JSONDecoder()
-
-                    let meals = try jsonDecoder.decode(MealsResponse.self, from: receivedData)
-                    completion(.success(meals))
-                } catch {
-                    print("Error decoding data: \(error.localizedDescription)")
-                    completion(.failure(error))
-                }
-            } else {
-                print("NO DATA RECEIVED")
-            }
-        }
-        task.resume()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let meal = vm.meals[indexPath.row]
+        
+        let cell = mealsTable.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath)
+        
+        cell.textLabel?.text = meal.name
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meal = vm.meals[indexPath.row]
+        let mealVC = MealViewController(meal: meal)
+        
+        navigationController?.pushViewController(mealVC, animated: true)
     }
 }
