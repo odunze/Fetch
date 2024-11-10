@@ -92,6 +92,40 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4C2E711F2CE05B0D006BB7A8 /* Meals Table */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E71122CDEDD8E006BB7A8 /* MealsListController.swift */,
+				4C2E711B2CDEE4BD006BB7A8 /* MealsViewModel.swift */,
+			);
+			path = "Meals Table";
+			sourceTree = "<group>";
+		};
+		4C2E71202CE05B1D006BB7A8 /* Meal Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E71142CDEDD9A006BB7A8 /* MealViewController.swift */,
+				4C2E711D2CE05AB6006BB7A8 /* MealDetailViewModel.swift */,
+			);
+			path = "Meal Detail";
+			sourceTree = "<group>";
+		};
+		4C2E71212CE05B38006BB7A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E71182CDEDE07006BB7A8 /* Models.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4C2E71222CE05B3F006BB7A8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E71162CDEDDD9006BB7A8 /* API.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		4C8F1D6C2CDEBB7A00225B99 = {
 			isa = PBXGroup;
 			children = (
@@ -116,12 +150,10 @@
 			isa = PBXGroup;
 			children = (
 				4C8F1D782CDEBB7B00225B99 /* AppDelegate.swift */,
-				4C2E71182CDEDE07006BB7A8 /* Models.swift */,
-				4C2E71162CDEDDD9006BB7A8 /* API.swift */,
-				4C2E71122CDEDD8E006BB7A8 /* MealsListController.swift */,
-				4C2E711B2CDEE4BD006BB7A8 /* MealsViewModel.swift */,
-				4C2E71142CDEDD9A006BB7A8 /* MealViewController.swift */,
-				4C2E711D2CE05AB6006BB7A8 /* MealDetailViewModel.swift */,
+				4C2E71212CE05B38006BB7A8 /* Model */,
+				4C2E71222CE05B3F006BB7A8 /* Networking */,
+				4C2E711F2CE05B0D006BB7A8 /* Meals Table */,
+				4C2E71202CE05B1D006BB7A8 /* Meal Detail */,
 				4C2E711A2CDEDE43006BB7A8 /* Resources */,
 			);
 			path = Fetch;
