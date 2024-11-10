@@ -10,6 +10,7 @@ import UIKit
 class MealsListController: UIViewController {
     
     private var vm: MealsViewModel
+    private var cellIdentifier: String = "mealCell"
     
     private var mealsTable: UITableView = {
         let table = UITableView(frame: .zero)
@@ -29,7 +30,7 @@ class MealsListController: UIViewController {
 
         view.backgroundColor = .white
 
-        mealsTable.register(UITableViewCell.self, forCellReuseIdentifier: "mealCell")
+        mealsTable.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         mealsTable.dataSource = self
         mealsTable.delegate = self
         view.addSubview(mealsTable)
@@ -68,7 +69,7 @@ extension MealsListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let meal = vm.meals[indexPath.row]
         
-        let cell = mealsTable.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath)
+        let cell = mealsTable.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         cell.textLabel?.text = meal.name
         
