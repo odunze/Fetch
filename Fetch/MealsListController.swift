@@ -77,7 +77,8 @@ extension MealsListController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meal = vm.meals[indexPath.row]
-        let mealVC = MealViewController(meal: meal)
+        let mealVM = SingleMealViewModel(meal: meal)
+        let mealVC = MealViewController(viewModel: mealVM)
         
         navigationController?.pushViewController(mealVC, animated: true)
     }

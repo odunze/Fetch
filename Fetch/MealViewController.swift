@@ -13,7 +13,7 @@ class MealViewController: UIViewController {
     // Instructions
     // Ingredients/measurements
     
-    private var meal: Meal
+    private var vm: SingleMealViewModel
     
     var nameLabel: UILabel = {
         let label = UILabel()
@@ -40,17 +40,29 @@ class MealViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = vm.meal.name
+        nameLabel.text = vm.meal.name
         
-        nameLabel.text = meal.name
-        //instructionsLabel.text =
-        //ingredientsLabel.text =
-        
-        title = meal.name
-        
+        loadMealDetails()
     }
     
-    init(meal: Meal) {
-        self.meal = meal
+    func loadMealDetails() {
+        Task {
+            do {
+                try await vm.loadMealDetails()
+                DispatchQueue.main.async {
+                    self.instructionsLabel.text = self.vm.meal.instructions
+                    self.ingredientsLabel.text = self.vm.meal.ingredients?.first?.name
+                }
+            } catch {
+                print("NETWORK CALL FROM VC WITH ERROR: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    init(viewModel: SingleMealViewModel) {
+        self.vm = viewModel
         super.init(nibName: nil, bundle: nil)
         
         view.backgroundColor = .white
