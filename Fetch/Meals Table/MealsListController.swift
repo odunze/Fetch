@@ -9,7 +9,7 @@ import UIKit
 
 class MealsListController: UIViewController {
     
-    private var vm: MealsViewModel
+    private var vm: MealsListViewModel
     private var cellIdentifier: String = "mealCell"
     
     private var mealsTable: UITableView = {
@@ -24,7 +24,7 @@ class MealsListController: UIViewController {
         loadMeals()
     }
     
-    init(viewModel: MealsViewModel) {
+    init(viewModel: MealsListViewModel) {
         self.vm = viewModel
         super.init(nibName: nil, bundle: nil)
 
@@ -79,7 +79,7 @@ extension MealsListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meal = vm.meals[indexPath.row]
         let mealVM = MealDetailViewModel(meal: meal)
-        let mealVC = MealViewController(viewModel: mealVM)
+        let mealVC = MealDetailViewController(viewModel: mealVM)
         
         navigationController?.pushViewController(mealVC, animated: true)
     }

@@ -1,5 +1,5 @@
 //
-//  MealsViewModel.swift
+//  MealsListViewModel.swift
 //  Fetch
 //
 //  Created by Lotanna Igwe-Odunze on 11/8/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MealsViewModel {
+class MealsListViewModel {
     
     var meals: [Meal] = []
     

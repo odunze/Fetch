@@ -1,5 +1,5 @@
 //
-//  MealViewController.swift
+//  MealDetailViewController.swift
 //  Fetch
 //
 //  Created by Lotanna Igwe-Odunze on 11/8/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MealViewController: UIViewController {
+class MealDetailViewController: UIViewController {
 
     private var vm: MealDetailViewModel
     
