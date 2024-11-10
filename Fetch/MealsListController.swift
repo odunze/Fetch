@@ -11,11 +11,11 @@ class MealsListController: UIViewController {
     
     private var vm: MealsViewModel
     
-    private var mealsTable: UITableView {
+    private var mealsTable: UITableView = {
         let table = UITableView(frame: .zero)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
-    }
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class MealsListController: UIViewController {
         self.vm = viewModel
         super.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = .red
+        view.backgroundColor = .white
 
         mealsTable.register(UITableViewCell.self, forCellReuseIdentifier: "mealCell")
         mealsTable.dataSource = self

@@ -45,11 +45,15 @@ class MealViewController: UIViewController {
         //instructionsLabel.text =
         //ingredientsLabel.text =
         
+        title = meal.name
+        
     }
     
     init(meal: Meal) {
         self.meal = meal
         super.init(nibName: nil, bundle: nil)
+        
+        view.backgroundColor = .white
         
         infoStack.addArrangedSubview(nameLabel)
         infoStack.addArrangedSubview(instructionsLabel)

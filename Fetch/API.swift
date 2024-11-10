@@ -20,7 +20,7 @@ enum API {
         switch self {
         case .dessert:
             return "/filter.php"
-        case .meal(let id):
+        case .meal:
             return "/lookup.php"
         }
     }

@@ -18,7 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         
         let mealsListViewModel = MealsViewModel()
-        window?.rootViewController = MealsListController(viewModel: mealsListViewModel)
+        let mealsListViewController = MealsListController(viewModel: mealsListViewModel)
+
+        window?.rootViewController = UINavigationController(rootViewController: mealsListViewController)
         window?.makeKeyAndVisible()
         return true
     }
