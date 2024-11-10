@@ -30,8 +30,8 @@ class MealDetailViewModel {
         let jsonDecoder = JSONDecoder()
         
         do {
-            let receivedMeal = try jsonDecoder.decode(Meal.self, from: data)
-            meal = receivedMeal
+            let mealsArray = try jsonDecoder.decode(MealsResponse.self, from: data)
+            meal = mealsArray.meals[0]
         } catch {
             print("Error decoding data: \(error.localizedDescription)")
             throw error
