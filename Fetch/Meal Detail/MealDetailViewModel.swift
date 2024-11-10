@@ -37,6 +37,5 @@ class MealDetailViewModel {
             throw error
         }
     }
-    
 }
 

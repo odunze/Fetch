@@ -8,29 +8,30 @@
 import UIKit
 
 class MealViewController: UIViewController {
-    
-    // Meal name
-    // Instructions
-    // Ingredients/measurements
-    
+
     private var vm: MealDetailViewModel
     
     var nameLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var instructionsLabel: UILabel = {
-        let label = UILabel()
-        return label
+    var instructionsView: UITextView = {
+        let view = UITextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    var amountStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fillProportionally
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
-    var ingredientsLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
-    var infoStack: UIStackView = {
+    var ingredientStack: UIStackView = {
         let stack = UIStackView(frame: .zero)
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -52,12 +53,29 @@ class MealViewController: UIViewController {
             do {
                 try await vm.loadMealDetails()
                 DispatchQueue.main.async {
-                    self.instructionsLabel.text = self.vm.meal.instructions
-                    self.ingredientsLabel.text = self.vm.meal.ingredients?.first?.name
+                    self.instructionsView.text = self.vm.meal.instructions
+                    self.loadIngredients()
                 }
             } catch {
                 print("NETWORK CALL FROM VC WITH ERROR: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func loadIngredients() {
+        guard let mealIngredients = vm.meal.ingredients else { return }
+        
+        for ingredient in mealIngredients {
+            let ingredientLabel = UILabel()
+            let measurementLabel = UILabel()
+
+            ingredientLabel.text = ingredient.name
+            measurementLabel.text = ingredient.measure
+
+            let measurementStack = UIStackView(arrangedSubviews: [ingredientLabel, measurementLabel])
+            measurementStack.axis = .horizontal
+            
+            ingredientStack.addArrangedSubview(measurementStack)
         }
     }
     
@@ -66,18 +84,24 @@ class MealViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         view.backgroundColor = .white
-        
-        infoStack.addArrangedSubview(nameLabel)
-        infoStack.addArrangedSubview(instructionsLabel)
-        infoStack.addArrangedSubview(ingredientsLabel)
 
-        view.addSubview(infoStack)
+        view.addSubview(nameLabel)
+        view.addSubview(ingredientStack)
+        view.addSubview(instructionsView)
         
         NSLayoutConstraint.activate([
-            infoStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            //infoStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20),
-            infoStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            infoStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            
+            ingredientStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            ingredientStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            ingredientStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            
+            instructionsView.topAnchor.constraint(equalTo: ingredientStack.bottomAnchor, constant: 20),
+            instructionsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            instructionsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            instructionsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
     }
     
