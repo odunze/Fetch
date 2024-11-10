@@ -12,6 +12,7 @@
 		4C2E71172CDEDDD9006BB7A8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E71162CDEDDD9006BB7A8 /* API.swift */; };
 		4C2E71192CDEDE07006BB7A8 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E71182CDEDE07006BB7A8 /* Models.swift */; };
 		4C2E711C2CDEE4BD006BB7A8 /* MealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E711B2CDEE4BD006BB7A8 /* MealsViewModel.swift */; };
+		4C2E711E2CE05AB6006BB7A8 /* MealDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E711D2CE05AB6006BB7A8 /* MealDetailViewModel.swift */; };
 		4C8F1D792CDEBB7B00225B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F1D782CDEBB7B00225B99 /* AppDelegate.swift */; };
 		4C8F1D822CDEBB7B00225B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8F1D812CDEBB7B00225B99 /* Assets.xcassets */; };
 		4C8F1D852CDEBB7B00225B99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8F1D832CDEBB7B00225B99 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,7 @@
 		4C2E71162CDEDDD9006BB7A8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4C2E71182CDEDE07006BB7A8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		4C2E711B2CDEE4BD006BB7A8 /* MealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewModel.swift; sourceTree = "<group>"; };
+		4C2E711D2CE05AB6006BB7A8 /* MealDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewModel.swift; sourceTree = "<group>"; };
 		4C8F1D752CDEBB7B00225B99 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8F1D782CDEBB7B00225B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C8F1D812CDEBB7B00225B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				4C2E71122CDEDD8E006BB7A8 /* MealsListController.swift */,
 				4C2E711B2CDEE4BD006BB7A8 /* MealsViewModel.swift */,
 				4C2E71142CDEDD9A006BB7A8 /* MealViewController.swift */,
+				4C2E711D2CE05AB6006BB7A8 /* MealDetailViewModel.swift */,
 				4C2E711A2CDEDE43006BB7A8 /* Resources */,
 			);
 			path = Fetch;
@@ -276,6 +279,7 @@
 				4C2E71192CDEDE07006BB7A8 /* Models.swift in Sources */,
 				4C8F1D792CDEBB7B00225B99 /* AppDelegate.swift in Sources */,
 				4C2E71172CDEDDD9006BB7A8 /* API.swift in Sources */,
+				4C2E711E2CE05AB6006BB7A8 /* MealDetailViewModel.swift in Sources */,
 				4C2E711C2CDEE4BD006BB7A8 /* MealsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

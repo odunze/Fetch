@@ -13,7 +13,7 @@ class MealViewController: UIViewController {
     // Instructions
     // Ingredients/measurements
     
-    private var vm: SingleMealViewModel
+    private var vm: MealDetailViewModel
     
     var nameLabel: UILabel = {
         let label = UILabel()
@@ -61,7 +61,7 @@ class MealViewController: UIViewController {
         }
     }
     
-    init(viewModel: SingleMealViewModel) {
+    init(viewModel: MealDetailViewModel) {
         self.vm = viewModel
         super.init(nibName: nil, bundle: nil)
         
